@@ -232,14 +232,3 @@ The app provides detailed error messages for:
 - **Dark Mode Persistence**: Theme preference is saved in localStorage
 - **Responsive Design**: Works on desktop, tablet, and mobile devices
 
----
-
-## 11. Future Enhancements
-
-Potential additions:
-- 📥 CSV export functionality
-- 📅 Date range filters
-- 🏆 Leaderboards and rankings
-- 📈 Advanced trend analysis
-- 🔍 Search and filter by person/date
-- 📊 Additional chart types (pie, scatter, etc.)
