@@ -1,8 +1,4 @@
-/**
- * Compute average miles run per person
- * @param {Array} normalizedRows - Array of { date, person, miles }
- * @returns {Array} Array of { person, average }
- */
+// Get avg miles per person, sorted by highest avg
 export function getAverageMilesPerPerson(normalizedRows) {
   const personStats = {};
 
@@ -22,11 +18,7 @@ export function getAverageMilesPerPerson(normalizedRows) {
     .sort((a, b) => b.average - a.average);
 }
 
-/**
- * Compute total miles run per person
- * @param {Array} normalizedRows - Array of { date, person, miles }
- * @returns {Array} Array of { person, total }
- */
+// Get total miles per person, sorted by highest
 export function getTotalMilesPerPerson(normalizedRows) {
   const personStats = {};
 
@@ -45,12 +37,7 @@ export function getTotalMilesPerPerson(normalizedRows) {
     .sort((a, b) => b.total - a.total);
 }
 
-/**
- * Get trend data (date vs miles) for a specific person
- * @param {Array} normalizedRows - Array of { date, person, miles }
- * @param {String} personName - Name of the person to filter
- * @returns {Array} Array of { date, miles } sorted by date
- */
+// Get date vs miles for one person (for line chart)
 export function getPersonTrendData(normalizedRows, personName) {
   return normalizedRows
     .filter(run => run.person === personName)
@@ -61,11 +48,7 @@ export function getPersonTrendData(normalizedRows, personName) {
     .sort((a, b) => a.date.localeCompare(b.date));
 }
 
-/**
- * Get overall metrics
- * @param {Array} normalizedRows - Array of { date, person, miles }
- * @returns {Object} Object with totalRuns, totalPeople, totalMiles
- */
+// Summary stats: runs, people, miles
 export function getOverallMetrics(normalizedRows) {
   const uniquePeople = new Set(normalizedRows.map(r => r.person)).size;
   const totalMiles = normalizedRows.reduce((sum, r) => sum + r.miles, 0);
@@ -77,12 +60,7 @@ export function getOverallMetrics(normalizedRows) {
   };
 }
 
-/**
- * Get per-person metrics
- * @param {Array} normalizedRows - Array of { date, person, miles }
- * @param {String} personName - Name of the person
- * @returns {Object} Object with totalMiles, runCount, averageMiles
- */
+// Stats for a single person
 export function getPersonMetrics(normalizedRows, personName) {
   const personRuns = normalizedRows.filter(r => r.person === personName);
   const totalMiles = personRuns.reduce((sum, r) => sum + r.miles, 0);

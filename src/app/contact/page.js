@@ -1,11 +1,11 @@
 import { Mail, Phone, User } from "lucide-react";
 
 export default function Contact() {
-  // Replace these with your actual information
+  // My details
   const contactInfo = {
-    name: "Pratik Jagannth Pujari", // Your full name
-    mobile: "+91 8767638547", // Your mobile number
-    email: "pratik.pujari@vit.edu.in", // Your email address
+    name: "Pratik Jagannth Pujari",
+    mobile: "+91 8767638547",
+    email: "pratik.pujari@vit.edu.in",
   };
 
   return (
@@ -15,7 +15,6 @@ export default function Contact() {
         <h1 className="text-4xl font-bold mb-4">Get In Touch</h1>
       </div>
 
-      {/* Contact Card */}
       <div className="max-w-md mx-auto">
         <div className="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-8 shadow-lg">
           <div className="text-center mb-8">
@@ -28,11 +27,10 @@ export default function Contact() {
             </p>
           </div>
 
-          {/* Contact Details */}
           <div className="space-y-6">
             {/* Name */}
             <div className="flex items-center gap-4 p-4 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
-              <div className="flex-shrink-0 w-10 h-10 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center">
+              <div className="shrink-0 w-10 h-10 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center">
                 <User className="w-5 h-5 text-blue-600 dark:text-blue-400" />
               </div>
               <div>
@@ -43,7 +41,7 @@ export default function Contact() {
 
             {/* Mobile */}
             <div className="flex items-center gap-4 p-4 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
-              <div className="flex-shrink-0 w-10 h-10 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center">
+              <div className="shrink-0 w-10 h-10 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center">
                 <Phone className="w-5 h-5 text-green-600 dark:text-green-400" />
               </div>
               <div>
@@ -59,7 +57,7 @@ export default function Contact() {
 
             {/* Email */}
             <div className="flex items-center gap-4 p-4 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
-              <div className="flex-shrink-0 w-10 h-10 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center">
+              <div className="shrink-0 w-10 h-10 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center">
                 <Mail className="w-5 h-5 text-purple-600 dark:text-purple-400" />
               </div>
               <div>
@@ -74,7 +72,6 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* CTA */}
           <div className="mt-8 pt-6 border-t border-slate-200 dark:border-slate-700">
             <a
               href={`mailto:${contactInfo.email}`}

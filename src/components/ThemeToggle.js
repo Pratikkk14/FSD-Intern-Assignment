@@ -6,7 +6,7 @@ import { useTheme } from './ThemeProvider';
 function ThemeToggle() {
   const { theme, toggleTheme, mounted } = useTheme();
 
-  // Don't render until mounted to prevent hydration mismatch
+  // Wait for mount
   if (!mounted) {
     return (
       <div className="p-2 rounded-lg bg-gray-200 dark:bg-gray-800 w-9 h-9" />

@@ -8,7 +8,7 @@ export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState('light');
   const [mounted, setMounted] = useState(false);
 
-  // Load theme from localStorage on mount
+  // Load saved theme
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme') || 'light';
     setTheme(savedTheme);

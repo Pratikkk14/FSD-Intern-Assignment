@@ -57,7 +57,7 @@ export default function Visualization() {
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <h1 className="text-4xl font-bold mb-6">Visualizations & Metrics</h1>
 
-      {/* Overall Metrics */}
+      {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <div className="p-6 bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800">
           <h3 className="text-sm text-muted-foreground mb-2">Total Runs</h3>
@@ -73,7 +73,7 @@ export default function Visualization() {
         </div>
       </div>
 
-      {/* Chart 1: Average Miles Run per Person */}
+      {/* Avg Miles Chart */}
       <div className="p-6 bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 mb-8">
         <h2 className="text-xl font-bold mb-6">Average Miles Run per Person</h2>
         <div className="w-full h-80">
@@ -97,7 +97,7 @@ export default function Visualization() {
         </div>
       </div>
 
-      {/* Chart 2: Total Miles Contribution by Person */}
+      {/* Total Miles Chart */}
       <div className="p-6 bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 mb-8">
         <h2 className="text-xl font-bold mb-6">Total Miles Contribution by Person</h2>
         <div className="w-full h-80">
@@ -121,7 +121,7 @@ export default function Visualization() {
         </div>
       </div>
 
-      {/* Per-Person View */}
+      {/* Person Analysis */}
       <div className="p-6 bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 mb-8">
         <div className="mb-6">
           <h2 className="text-xl font-bold mb-4">Per-Person Analysis</h2>
@@ -144,7 +144,7 @@ export default function Visualization() {
           </div>
         </div>
 
-        {/* Per-Person Metrics */}
+        {/* Metrics */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           <div className="p-4 bg-white dark:bg-slate-800 rounded border border-slate-200 dark:border-slate-700">
             <h3 className="text-xs text-muted-foreground mb-1">Total Miles</h3>
@@ -160,7 +160,7 @@ export default function Visualization() {
           </div>
         </div>
 
-        {/* Chart 3: Running Trend Over Time */}
+        {/* Trend Chart */}
         <h3 className="text-lg font-bold mb-4">Running Trend Over Time</h3>
         <div className="w-full h-80">
           <ResponsiveContainer width="100%" height="100%">
@@ -190,7 +190,7 @@ export default function Visualization() {
         </div>
       </div>
 
-      {/* Raw Data Preview */}
+      {/* Data Preview */}
       <div className="p-6 bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 mb-8">
         <h2 className="text-xl font-bold mb-4">Data Preview</h2>
         <div className="overflow-x-auto">

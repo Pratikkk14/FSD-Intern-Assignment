@@ -3,7 +3,6 @@ import Link from "next/link";
 export default function About() {
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      {/* Header */}
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold mb-4">About CSV Runner Dashboard</h1>
         <p className="text-lg text-muted-foreground">
@@ -11,7 +10,6 @@ export default function About() {
         </p>
       </div>
 
-      {/* What is this? */}
       <section className="mb-12">
         <h2 className="text-2xl font-bold mb-4">🏃 What is this project?</h2>
         <div className="prose dark:prose-invert max-w-none">
@@ -27,7 +25,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Key Features */}
       <section className="mb-12">
         <h2 className="text-2xl font-bold mb-6">✨ Key Features</h2>
         <div className="grid md:grid-cols-2 gap-6">
@@ -81,7 +78,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* How it Works */}
       <section className="mb-12">
         <h2 className="text-2xl font-bold mb-4">⚙️ How it Works</h2>
         <div className="space-y-4">
@@ -140,7 +136,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Edge Cases & Smart Features */}
       <section className="mb-12">
         <h2 className="text-2xl font-bold mb-4">🔍 Edge Cases & Smart Handling</h2>
         <div className="bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-900 rounded-lg p-6">
@@ -173,7 +168,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Micro Features */}
       <section className="mb-12">
         <h2 className="text-2xl font-bold mb-4">🎯 Micro Features You'll Love</h2>
         <div className="space-y-3">
@@ -228,7 +222,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* CSV Example */}
       <section className="mb-12">
         <h2 className="text-2xl font-bold mb-4">📄 Example CSV Format</h2>
         <div className="bg-slate-100 dark:bg-slate-900 p-4 rounded-lg border border-slate-300 dark:border-slate-700 overflow-x-auto">
@@ -246,7 +239,6 @@ export default function About() {
         </p>
       </section>
 
-      {/* Tech Stack */}
       <section className="mb-12">
         <h2 className="text-2xl font-bold mb-4">🛠️ Built With</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -269,7 +261,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* CTA */}
       <div className="text-center p-8 bg-linear-to-r from-blue-50 to-indigo-50 dark:from-blue-950 dark:to-indigo-950 rounded-lg border border-blue-200 dark:border-blue-900">
         <h2 className="text-2xl font-bold mb-4">Ready to Analyze Your Running Data?</h2>
         <p className="text-muted-foreground mb-6">

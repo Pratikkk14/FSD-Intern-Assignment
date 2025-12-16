@@ -27,15 +27,12 @@ export function CsvUploader() {
   const [rowLimitError, setRowLimitError] = useState("");
   const { setParsedData: setGlobalParsedData } = useData();
 
-  // Required headers (case-insensitive)
   const REQUIRED_HEADERS = ["date", "person", "miles run"];
   const ROW_LIMIT = 10000;
 
   const validateHeaders = (headers) => {
-    // Normalize headers to lowercase for comparison
     const normalizedHeaders = headers.map(h => h.toLowerCase().trim());
 
-    // Check if all required headers exist
     const missingHeaders = REQUIRED_HEADERS.filter(
       required => !normalizedHeaders.includes(required)
     );
@@ -47,7 +44,6 @@ export function CsvUploader() {
       };
     }
 
-    // All required headers present
     return {
       isValid: true,
       normalizedHeaders,
@@ -57,35 +53,30 @@ export function CsvUploader() {
     };
   };
 
-  // Validate individual row
+  // Row validation
   const validateRow = (row, headerIndices, rowNumber) => {
     const dateIdx = headerIndices[0];
     const personIdx = headerIndices[1];
     const milesIdx = headerIndices[2];
 
-    // Get values
     const dateValue = row[dateIdx]?.toString().trim();
     const personValue = row[personIdx]?.toString().trim();
     const milesValue = row[milesIdx]?.toString().trim();
 
-    // Validate Date
+    // Date check
     if (!dateValue) {
       return { isValid: false, error: `Invalid date value at row ${rowNumber + 2}: date is missing` };
     }
     
-    // Check if valid date format (DD-MM-YYYY only)
     const dateRegex = /^\d{2}-\d{2}-\d{4}$/;
     if (!dateRegex.test(dateValue)) {
       return { isValid: false, error: `Invalid date value at row ${rowNumber + 2}: "${dateValue}" must be in DD-MM-YYYY format` };
     }
     
-    // Parse DD-MM-YYYY format
     const dateParts = dateValue.split('-');
     const day = parseInt(dateParts[0], 10);
     const month = parseInt(dateParts[1], 10);
     const year = parseInt(dateParts[2], 10);
-    
-    // Simple validation: day 1-31, month 1-12, year is 4 digits
     if (day < 1 || day > 31) {
       return { isValid: false, error: `Invalid date value at row ${rowNumber + 2}: day must be between 1 and 31` };
     }
@@ -96,7 +87,7 @@ export function CsvUploader() {
       return { isValid: false, error: `Invalid date value at row ${rowNumber + 2}: year must be between 1900 and 2100` };
     }
 
-    // Validate Person
+    // Person check
     if (!personValue) {
       return { isValid: false, error: `Invalid person value at row ${rowNumber + 2}: person is missing` };
     }
@@ -104,7 +95,7 @@ export function CsvUploader() {
       return { isValid: false, error: `Invalid person value at row ${rowNumber + 2}: person must be non-empty string` };
     }
 
-    // Validate Miles run
+    // Miles check
     if (!milesValue) {
       return { isValid: false, error: `Invalid miles run value at row ${rowNumber + 2}: miles run is missing` };
     }
@@ -119,13 +110,13 @@ export function CsvUploader() {
     return { isValid: true };
   };
 
-  // Normalize data
+  // Convert row to normalized format
   const normalizeRow = (row, headerIndices) => {
     const dateIdx = headerIndices[0];
     const personIdx = headerIndices[1];
     const milesIdx = headerIndices[2];
 
-    // Parse DD-MM-YYYY and convert to YYYY-MM-DD ISO format
+    // DD-MM-YYYY to ISO format
     const dateValue = row[dateIdx].toString().trim();
     const dateParts = dateValue.split('-');
     const day = dateParts[0];
@@ -143,17 +134,17 @@ export function CsvUploader() {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     
-    // Validate file extension
+    // Must be .csv
     if (file && file.name.split('.').pop().toLowerCase() !== "csv") {
       setError("The input file is not a CSV file.");
-      e.target.value = ""; // Reset input
+      e.target.value = "";
       toast.error("Invalid file format");
       return;
     }
 
     if (!file) return;
 
-    // Check if file is empty
+    // Empty file
     if (file.size === 0) {
       setError("File is empty.");
       toast.error("File is empty");
@@ -164,7 +155,6 @@ export function CsvUploader() {
     setError("");
     toast.info(`Parsing ${file.name}...`);
 
-    // Read and parse CSV file
     const reader = new FileReader();
 
     reader.onload = (event) => {
@@ -177,7 +167,7 @@ export function CsvUploader() {
           complete: (results) => {
             const rows = results.data;
 
-            // Handle error cases
+            // Empty CSV
             if (!rows || rows.length === 0) {
               setError("CSV file is empty or unreadable.");
               setTimeout(() => {
@@ -187,7 +177,7 @@ export function CsvUploader() {
               return;
             }
 
-            // Check if only headers exist, no data rows
+            // Headers but no data
             if (rows.length === 1) {
               setError("CSV has headers but no data rows.");
               setTimeout(() => {
@@ -197,11 +187,10 @@ export function CsvUploader() {
               return;
             }
 
-            // Extract headers and data rows
             const headers = rows[0];
             const dataRows = rows.slice(1);
 
-            // Check row limit (soft limit warning)
+            // Row limit check
             if (dataRows.length > ROW_LIMIT) {
               setRowLimitError(`The file contains ${dataRows.length.toLocaleString()} rows, which exceeds the 10,000 row limit.`);
               e.target.value = "";
@@ -211,7 +200,7 @@ export function CsvUploader() {
               return;
             }
 
-            // Validate headers
+            // Header check
             const headerValidation = validateHeaders(headers);
             if (!headerValidation.isValid) {
               setError(headerValidation.error);
@@ -223,10 +212,10 @@ export function CsvUploader() {
               return;
             }
 
-            // Validate and normalize all rows
+            // Process rows
             const normalizedRows = [];
             for (let i = 0; i < dataRows.length; i++) {
-              // Skip empty rows (rows with all empty cells)
+              // Skip blank rows
               const isEmptyRow = dataRows[i].every(cell => !cell || cell.toString().trim() === "");
               if (isEmptyRow) {
                 continue;
@@ -242,7 +231,6 @@ export function CsvUploader() {
                 setParsedData(null);
                 return;
               }
-              // Normalize the row
               const normalized = normalizeRow(dataRows[i], headerValidation.headerIndices);
               normalizedRows.push(normalized);
             }
@@ -254,7 +242,6 @@ export function CsvUploader() {
               rowCount: normalizedRows.length,
               columnCount: headers.length,
               headerIndices: headerValidation.headerIndices,
-              // Group data by person for easy access
               groupedByPerson: normalizedRows.reduce((acc, run) => {
                 if (!acc[run.person]) {
                   acc[run.person] = [];
@@ -267,7 +254,6 @@ export function CsvUploader() {
             setParsedData(data);
             setGlobalParsedData(data);
             
-            // Add 0.5s delay before showing success toast
             setTimeout(() => {
               toast.success("File is parsed");
             }, 500);
